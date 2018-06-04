@@ -1,0 +1,31 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+---
+spring:
+  profiles: local,default
+  security:
+    user:
+      name: admin
+      password: pass
+datasource:
+  productapp:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/edu_product
+    username: postgres
+    password: admin
+    defaultSchema: 
+    maxPoolSize: 10
+    hibernate:
+      hbm2ddl.method: update
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+---
+logging:
+  level:
+    root: info
+  pattern:
+    console: '%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n'
+      
