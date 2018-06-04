@@ -1,7 +1,7 @@
 package emx.solar.pack.service;
 
-import emx.solar.pack.domains.RoleEntity;
-import emx.solar.pack.domains.UserEntity;
+import emx.solar.pack.entities.RoleEntity;
+import emx.solar.pack.entities.UserEntity;
 
 public interface IAccountService {
 	

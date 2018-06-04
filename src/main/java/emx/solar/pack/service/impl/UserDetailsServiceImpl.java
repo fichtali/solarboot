@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import emx.solar.pack.domains.AuthUser;
-import emx.solar.pack.domains.UserEntity;
+import emx.solar.pack.entities.AuthUser;
+import emx.solar.pack.entities.UserEntity;
 import emx.solar.pack.service.IAccountService;
 
 @Service("CustomUserDetailsService")

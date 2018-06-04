@@ -5,8 +5,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import emx.solar.pack.domains.RoleEntity;
-import emx.solar.pack.domains.UserEntity;
+import emx.solar.pack.entities.RoleEntity;
+import emx.solar.pack.entities.UserEntity;
 import emx.solar.pack.repositories.RoleEntityRepository;
 import emx.solar.pack.repositories.UserEntityRepository;
 import emx.solar.pack.service.IAccountService;

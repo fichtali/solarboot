@@ -1,4 +1,4 @@
-package emx.solar.pack.domains;
+package emx.solar.pack.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;

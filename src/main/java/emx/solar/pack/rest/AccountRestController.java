@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import emx.solar.pack.domains.UserEntity;
 import emx.solar.pack.dto.RegisterForm;
+import emx.solar.pack.entities.UserEntity;
 import emx.solar.pack.service.IAccountService;
 
 @RestController
