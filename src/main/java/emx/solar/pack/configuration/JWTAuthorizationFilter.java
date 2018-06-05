@@ -34,27 +34,28 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter{
 		response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, "
 				+ "Access-Control-Allow-Credentials, Authorization");
 		String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
-		if(jwtToken == null || !jwtToken.startsWith(SecurityConstants.TOKEN_PREFIX)) {
+		
+		if(("OPTIONS").equals(request.getMethod()))
+			response.setStatus(HttpServletResponse.SC_OK);
+		else {
+			if (jwtToken == null || !jwtToken.startsWith(SecurityConstants.TOKEN_PREFIX)) {
+				filterChain.doFilter(request, response);
+				return;
+			}
+			Claims claims = Jwts.parser().setSigningKey(SecurityConstants.SECRET)
+					.parseClaimsJws(jwtToken.replace(SecurityConstants.TOKEN_PREFIX, "")).getBody();
+			String usrename = claims.getSubject();
+			@SuppressWarnings("unchecked")
+			ArrayList<Map<String, String>> roles = (ArrayList<Map<String, String>>) claims.get("roles");
+			Collection<GrantedAuthority> authorities = new ArrayList<>();
+			roles.forEach(r -> {
+				authorities.add(new SimpleGrantedAuthority(r.get("authority")));
+			});
+			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(usrename,
+					null, authorities);
+			SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 			filterChain.doFilter(request, response);
-			return;
 		}
-		
-		Claims claims = Jwts.parser()
-					.setSigningKey(SecurityConstants.SECRET)
-					.parseClaimsJws(jwtToken.replace(SecurityConstants.TOKEN_PREFIX, ""))
-					.getBody();
-		String usrename = claims.getSubject();
-		@SuppressWarnings("unchecked")
-		ArrayList<Map<String, String>> roles = (ArrayList<Map<String, String>>) claims.get("roles");
-		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		roles.forEach(r -> {
-			authorities.add(new SimpleGrantedAuthority(r.get("authority")));
-		});
-		
-		UsernamePasswordAuthenticationToken authenticationToken = 
-				new UsernamePasswordAuthenticationToken(usrename, null, authorities);
-		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-		filterChain.doFilter(request, response);
 		
 	}
 

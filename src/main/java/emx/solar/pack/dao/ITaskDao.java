@@ -1,7 +1,8 @@
 package emx.solar.pack.dao;
 
-public interface ITaskDao {
-	
-	
+import emx.solar.pack.entities.Task;
 
+public interface ITaskDao extends IGenericHibernateDao<Task, Long>{
+	
+	
 }

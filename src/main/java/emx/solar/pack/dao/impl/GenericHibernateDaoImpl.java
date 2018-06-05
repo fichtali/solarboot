@@ -43,7 +43,7 @@ public abstract class GenericHibernateDaoImpl<T, ID extends Serializable> implem
 	}
 
 	@Override
-	public void saveOrUpdate(T entity) {
+	public void update(T entity) {
 		entityManager.merge(entity);
 	}
 
@@ -65,13 +65,13 @@ public abstract class GenericHibernateDaoImpl<T, ID extends Serializable> implem
 	}
 
 	@Override
-	public T getById(ID id) {
+	public T findOne(ID id) {
 		return (T) entityManager.find(clazz, id);
 	}
 
 	@Override
 	public void deleteById(ID id) {
-		T e = getById(id);
+		T e = findOne(id);
 		if (e != null)
 			entityManager.remove(e);
 	}
