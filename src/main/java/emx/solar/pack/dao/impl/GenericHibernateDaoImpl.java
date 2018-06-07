@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import emx.solar.pack.dao.IGenericHibernateDao;
 
 @Repository
+@Transactional
 public abstract class GenericHibernateDaoImpl<T, ID extends Serializable> implements IGenericHibernateDao<T, ID> {
 
 	protected static final int LIGNES_PAR_PAGES = 25;

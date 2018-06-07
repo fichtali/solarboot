@@ -31,9 +31,6 @@ import emx.solar.pack.utils.AppGlobalConfig;
 @EnableJpaRepositories(basePackages = AppGlobalConfig.BASE_PACKAGE, entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager")
 public class JpaConfiguration {
 
-	private static final boolean GENERATED_DDL = true;
-	private static final String[] ENTITY_PACKAGES = { "emx.solar.pack.entities" };
-
 	@Autowired
 	private Environment env;
 
